@@ -1,18 +1,22 @@
 const messages = {
     welcome: [
         "oh, hi!",
-        "ya need something calculated? good thing you came here",
+        "ya need something calculated? good thing you came here!",
         "hi-hi! what's up?",
-        "hey, hey, hey!"
+        "hey, hey, hey!",
     ],
     bye: [
-        "oh, alright. bye!"
+        "oh, alright. bye!",
+        "have a good day! please. it will be really bad if you don't.",
+        "peace!",
+        "see ya later!",
+        "buh-bye!",
     ],
     prompt: [
         "what's your question?",
-        "i'm all ears",
+        "i'm all ears!",
         "what's on your mind?",
-        "what's your problem? in like, a nice way",
+        "what's your problem? in like, a nice way.",
     ],
     distracted: [
         "....wait, sorry, i was busy thinking about my life choices. ask again?",
@@ -26,21 +30,24 @@ const messages = {
         "i think is",
         "uhhhhh is",
         "...is",
-        "i wanna say that is",
-        "iiiiiiiiisssssssss",
-        "ummm... i think is"
+        "...i wanna say that's",
+        "iiiiiiiiiiiiiiis",
+        "ummm... i think is",
     ],
     correction: [
         "no, wait, it's",
-        "...wait, i meant to say",
+        "wait, i meant to say",
         "that looks wrong... OH! it's",
-        "no... sorry, the tired is getting to me, it's",
+        "no... sorry, the lack of sleep is getting to me, it's",
         "no wait- how did i miss that? it's",
+        "shit, wait,",
     ],
     error: [
-        "what what huh? sorry i think you're speaking alien",
-        "i know typing is hard, but i think you can do better",
-        "i'm listening, but what the hell does any of that even mean?",
+        "aaand... uhhh... that doesn't seem right?",
+        "...you do know that i can't do ALL types of math, right?",
+        "...i think it'd be a better idea to go ask Desmos this.",
+        "and... oh... that's not basic arithmetic...",
+        "...fuckin', i dunno, five??",
     ],
 }
 
