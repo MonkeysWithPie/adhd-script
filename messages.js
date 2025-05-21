@@ -49,6 +49,13 @@ const messages = {
         "and... oh... that's not basic arithmetic...",
         "...fuckin', i dunno, five??",
     ],
+    giveUp: [
+        "...this is so much! what the hell!",
+        "i think this amount of work could be classified as torture. i'm not doing this.",
+        "whatever, this is a miniscule part of my grade, i can't be bothered.",
+        "...wait, so why am i here?",
+        "...y'know what? screw this."
+    ]
 }
 
 function getMessage(type) {

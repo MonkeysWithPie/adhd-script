@@ -84,6 +84,11 @@ async function calculate(a, b, op, calculations) {
         throw new Error(`no operator for ${op}`);
     }
 
+    if (Math.random() < 0.01 && calculations >= 6) {
+        printMessage(getMessage("giveUp"));
+        return null;
+    }
+
     const result = operators[op].func(a, b);
 
     await printMessage(
