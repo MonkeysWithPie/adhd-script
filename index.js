@@ -1,8 +1,15 @@
 const { getMessage } = require('./messages.js');
 const { printMessage } = require('./printMessage.js');
 const { calculate } = require('./calculate.js');
+const readLine = require('readline');
 
 async function main() {
+    const input = readLine.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+
     await printMessage(getMessage('welcome'));
     let state = {
         firstUsage: true,
@@ -17,10 +24,9 @@ async function main() {
             state.firstUsage = false;
         }
 
-        // userInput = await getUserInput();
-
-        // test input because no real input yet
-        userInput = '2 + 2'; 
+        await input.question('> ').then(async (input) => {
+            userInput = input.trim();
+        })
         
         if (userInput === 'exit') {
             await printMessage(getMessage('goodbye'));
