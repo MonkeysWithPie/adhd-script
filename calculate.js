@@ -178,11 +178,9 @@ async function operator(a, b, op, calculations) {
     // if adding or subtracting, chance to mix up the operator
     if ((op === "+" || op === "-") && (Math.random() < 0.05)) {
         const newOp = op === "+" ? "-" : "+";
-        a = operators[newOp].func(a, b);
-        await printOperation(a, b, op, calculations, mistake);
+        await printOperation(a, b, newOp, newOp, mistake);
 
         mistake = true;
-        a = operators[op].func(a, b);
     }
 
     return await printOperation(a, b, op, calculations, mistake);
