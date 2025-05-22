@@ -41,7 +41,7 @@ async function calculate(equation) {
         result = await parseTokens(tokens);
     } catch (e) {
         await printMessage(getMessage("error"));
-        await printMessage(`(${e})`, 5);
+        console.log(e);
         return null;
     }
 
@@ -63,20 +63,24 @@ function tokenize(equation) {
         if (char === " ") {
             continue;
         }
-        if (parseInt(char) >= 0 && parseInt(char) <= 9) {
+        if (parseInt(char) >= 0 && parseInt(char) <= 9 || char === ".") {
             currentNumber += char;
             continue;
         }
         if (currentNumber) {
-            tokens.push(parseInt(currentNumber));
+            tokens.push(parseFloat(currentNumber));
             currentNumber = "";
+        }
+        if (char === "-" && !(typeof tokens[tokens.length - 1] === "number")) {
+            currentNumber += char;
+            continue;
         }
 
         tokens.push(char);
     }
 
     if (currentNumber) {
-        tokens.push(parseInt(currentNumber));
+        tokens.push(parseFloat(currentNumber));
     }
 
     return tokens;
@@ -189,7 +193,7 @@ async function printOperation(a, b, op, calculations, mistake) {
     let toPrint = operators[op].text + " " + b + " " + getMessage("result") + " " + result + "..."
     
     if (mistake) {
-        toPrint = "..." + getMessage("mistake") + " " + result + ". oops.";
+        toPrint = "..." + getMessage("correction") + " " + result + ". oops.";
     }
 
     if (!mistake /* && calculations === 0 */) {
