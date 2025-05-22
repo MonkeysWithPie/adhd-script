@@ -161,12 +161,40 @@ async function operator(a, b, op, calculations) {
         return null;
     }
 
+    let mistake = false;
+
+    // if multiplying or dividing, and only one number is negative, chance to flip the sign
+    if ((op === "/" || op === "*") && (b < 0 ? !a < 0 : a < 0) && (Math.random() < 0.1)) {
+        a = -a;
+        await printOperation(a, b, op, calculations, mistake);
+
+        mistake = true;
+        a = -a;
+    }
+    // if adding or subtracting, chance to mix up the operator
+    if ((op === "+" || op === "-") && (Math.random() < 0.05)) {
+        const newOp = op === "+" ? "-" : "+";
+        a = operators[newOp].func(a, b);
+        await printOperation(a, b, op, calculations, mistake);
+
+        mistake = true;
+        a = operators[op].func(a, b);
+    }
+
+    return await printOperation(a, b, op, calculations, mistake);
+}
+
+async function printOperation(a, b, op, calculations, mistake) {
     const result = operators[op].func(a, b);
     let toPrint = operators[op].text + " " + b + " " + getMessage("result") + " " + result + "..."
+    
+    if (mistake) {
+        toPrint = "..." + getMessage("mistake") + " " + result + ". oops.";
+    }
 
-    // if (calculations === 0) {
+    if (!mistake /* && calculations === 0 */) {
         toPrint = a + " " + toPrint;
-    // }
+    }
 
     await printMessage(
         toPrint,
