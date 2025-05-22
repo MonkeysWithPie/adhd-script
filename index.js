@@ -9,6 +9,9 @@ async function main() {
         output: process.stdout
     });
 
+    const askQuestion = (query) => {
+        return new Promise(resolve => input.question(query, resolve));
+    };
 
     await printMessage(getMessage('welcome'));
     let state = {
@@ -20,22 +23,27 @@ async function main() {
         await printMessage(getMessage('prompt'));
 
         if (state.firstUsage) {
-            await printMessage("(type in any math problem, or type 'exit' to leave)");
+            await printMessage("(type in any math problem, or type 'exit' to leave)", 2);
             state.firstUsage = false;
         }
 
-        await input.question('> ').then(async (input) => {
-            userInput = input.trim();
-        })
+        userInput = await askQuestion('> ');
+        userInput = userInput.trim();
         
         if (userInput === 'exit') {
-            await printMessage(getMessage('goodbye'));
+            await printMessage(getMessage('bye'));
             break;
-        } else {
+        } else if (userInput === 'mrrow') {
+            await printMessage("that's true! but... do you want me to do math?")
+        }
+        else {
             await calculate(userInput);
         }
-        await printMessage("...", 150);
+        
+        await printMessage(" ", 400);
     }
+
+    input.close();
 }
 
 main()

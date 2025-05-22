@@ -30,8 +30,8 @@ const operators = {
 };
 
 async function calculate(equation) {
-    if (Math.random() < 0.7) {
-        printMessage(getMessage("distracted"));
+    if (Math.random() < 0.5) {
+        await printMessage(getMessage("distracted"));
         return null;
     }   
     let result;
@@ -39,13 +39,13 @@ async function calculate(equation) {
     try {
         // do all the calculation
     } catch (e) {
-        printMessage(getMessage("error"));
-        printMessage(`(${e}, ${e.stack})`, 15);
+        await printMessage(getMessage("error"));
+        await printMessage(`(${e}, ${e.stack})`, 15);
         return null;
     }
 
     // give up because this seems really complicated to implement
-    printMessage("idk... like... four?");
+    await printMessage("idk... like... four?");
     return 4;
 }
 
@@ -79,7 +79,7 @@ function parseTokens(tokens) {
 
 }
 
-async function calculate(a, b, op, calculations) {
+async function operator(a, b, op, calculations) {
     if (!operators[op]) {
         throw new Error(`no operator for ${op}`);
     }

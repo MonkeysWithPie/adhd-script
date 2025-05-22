@@ -1,14 +1,21 @@
-async function printMessage(message, sleepMs = 25) {
-    const specialWaitMults = {
-        ' ': 1.5,
-        ',': 3,
-        ';': 3,
-        '.': 7,
-        '!': 7,
-        '?': 7,
-        ':': 7,
-    }
+const mults = {
+    WORD: 2.5,
+    SHORT_SPLIT: 8,
+    LONG_SPLIT: 15,
+}
 
+const specialWaitMults = {
+        ' ': mults.WORD,
+        ',': mults.SHORT_SPLIT,
+        ';': mults.SHORT_SPLIT,
+        '-': mults.SHORT_SPLIT,
+        '.': mults.LONG_SPLIT,
+        '!': mults.LONG_SPLIT,
+        '?': mults.LONG_SPLIT,
+        ':': mults.LONG_SPLIT,
+}
+
+async function printMessage(message, sleepMs = 25) {
     for (let i = 0; i < message.length; i++) {
         const char = message[i];
         process.stdout.write(char);

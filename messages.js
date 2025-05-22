@@ -24,6 +24,10 @@ const messages = {
         "aren't dragons like, awesome? ...what? did you need something?",
         "sorry, i was just thinking about how i should be writing my project. what were you saying?",
         "i'm so tired... do i have to? i'll do it later...",
+        "...capitalism and all that... man, the world is fucked up. math? what?",
+        "LOOK! A BIRD!! wait, did you say something?",
+        "aren't these posters on the wall so pretty? ...what? did you need something?",
+        "-and sometimes i just wish my brain was normal. wait, were you-? this is exactly what i mean.",
     ],
     result: [
         "is",
