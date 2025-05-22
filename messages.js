@@ -33,7 +33,6 @@ const messages = {
         "is",
         "i think is",
         "uhhhhh is",
-        "...is",
         "...i wanna say that's",
         "iiiiiiiiiiiiiiis",
         "ummm... i think is",
@@ -54,16 +53,35 @@ const messages = {
         "...fuckin', i dunno, five??",
     ],
     giveUp: [
-        "...this is so much! what the hell!",
-        "i think this amount of work could be classified as torture. i'm not doing this.",
         "whatever, this is a miniscule part of my grade, i can't be bothered.",
         "...wait, so why am i here?",
-        "...y'know what? screw this."
+        "...y'know what? screw this.",
+        "i'd much rather not finish this one, to be honest.",
+        "why..."
+    ],
+    giveUpEarly: [
+        "...i'm not even gonna try with this one.",
+        "no, i'm okay, thank you.",
+        "where do i even start? actually, what if i just don't?",
+        "...i should be getting paid for this..."
+    ],
+    finished: [
+        "...yep! it's",
+        "yeah, the answer is",
+        "so i'm pretty sure it's",
+        "i think it's"
     ]
 }
+let lastMessages = {};
 
 function getMessage(type) {
-    return messages[type][Math.floor(Math.random() * messages[type].length)];
+    let message = lastMessages[type];
+    while (message === lastMessages[type]) {
+        message = messages[type][Math.floor(Math.random() * messages[type].length)]
+    }
+
+    lastMessages[type] = message;
+    return message;
 }
 
 module.exports = { getMessage, messages };
