@@ -1,7 +1,7 @@
 const mults = {
     WORD: 2.5,
     SHORT_SPLIT: 8,
-    LONG_SPLIT: 15,
+    LONG_SPLIT: 12,
 }
 
 const specialWaitMults = {

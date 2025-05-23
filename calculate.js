@@ -178,7 +178,7 @@ async function operator(a, b, op, calculations) {
     // if adding or subtracting, chance to mix up the operator
     if ((op === "+" || op === "-") && (Math.random() < 0.05)) {
         const newOp = op === "+" ? "-" : "+";
-        await printOperation(a, b, newOp, newOp, mistake);
+        await printOperation(a, b, newOp, calculations, mistake, operators[op].text);
 
         mistake = true;
     }
@@ -186,9 +186,24 @@ async function operator(a, b, op, calculations) {
     return await printOperation(a, b, op, calculations, mistake);
 }
 
-async function printOperation(a, b, op, calculations, mistake) {
+async function printOperation(a, b, op, calculations, mistake, opTextOverride) {
     const result = operators[op].func(a, b);
-    let toPrint = operators[op].text + " " + b + " " + getMessage("result") + " " + result + "..."
+
+    if (result > 1e10 && Math.log(result) % 1 !== 0) {
+        await printMessage(getMessage("tooLarge"));
+        return null;
+    }
+
+    let toPrint = (opTextOverride || operators[op].text) + " " + b + " ";
+
+    if (op === "+" || op === "-") {
+        toPrint += getMessage("resultEasy");
+    } else {
+        toPrint += getMessage("resultHard");
+    }
+    toPrint = toPrint.replace("[n]", result);
+    toPrint += "...";
+
     
     if (mistake) {
         toPrint = "..." + getMessage("correction") + " " + result + ". oops.";
